@@ -10,12 +10,11 @@ class Agreement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'name',
-        'description',
-        'total',
+        'customer_forename',
+        'customer_surname',
+        'customer_date_of_birth',
+        'created_by',
     ];
-
     // agreement must have a user
     public function User()
     {

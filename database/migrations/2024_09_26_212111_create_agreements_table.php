@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('agreements', function (Blueprint $table) {
             $table->id();
+            $table->string('customer_forename');
+            $table->string('customer_surname');
+            $table->date('customer_date_of_birth');
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

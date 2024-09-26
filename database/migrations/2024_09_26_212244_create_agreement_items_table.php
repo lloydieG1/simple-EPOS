@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('agreement_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('agreement_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->integer('quantity');
+            $table->decimal('cost_price', 8, 2); // 8 digits, 2 decimal places (wont be buying things worth a million)
+            $table->decimal('retail_price', 8, 2);
             $table->timestamps();
+            $table->softDeletes(); 
         });
     }
 

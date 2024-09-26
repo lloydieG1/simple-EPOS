@@ -12,12 +12,11 @@ class AgreementItem extends Model
 
     protected $fillable = [
         'agreement_id',
-        'item_id',
         'name',
         'description',
         'quantity',
-        'price',
-        'total',
+        'cost_price',
+        'retail_price',
     ];
 
     // agreement item must have a user
