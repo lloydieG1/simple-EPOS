@@ -32,6 +32,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    // user may have many agreements
+    public function agreements()
+    {
+        return $this->hasMany(Agreement::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
