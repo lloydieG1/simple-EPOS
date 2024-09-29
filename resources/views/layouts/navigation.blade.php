@@ -12,13 +12,13 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('agreement.create')" :active="request()->routeIs('agreement.create')">
                         Create Agreement
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('agreement.index')" :active="request()->routeIs('agreement.index')">
                         View Agreements
                     </x-nav-link>
                 </div>
@@ -26,7 +26,7 @@
                 <!--only show the staff reports link if the user is an admin-->
                 @if (Auth::check() && Auth::user()->role === 'admin')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <x-nav-link :href="route('report.index')" :active="request()->routeIs('dashboard')">
                             Staff Reports
                         </x-nav-link>
                     </div>
