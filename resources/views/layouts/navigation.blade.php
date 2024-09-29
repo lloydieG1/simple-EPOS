@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('agreement.index') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -13,9 +13,37 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        Create Agreement
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        View Agreements
+                    </x-nav-link>
+                </div>
+
+                <!--only show the staff reports link if the user is an admin-->
+                @if (Auth::check() && Auth::user()->role === 'admin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            Staff Reports
+                        </x-nav-link>
+                    </div>
+                @endif
+
+                <!-- Search Bar -->
+                <div class="hidden sm:flex sm:items-center sm:ms-8">
+                    <form action="{{ route('search.index') }}" method="GET" class="flex items-center">
+                        <input type="text" name="query" placeholder="search for agreements..." class="pl-2 pr-32 py-2 placeholder:text-gray-400 font-thin text-sm border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                        <button type="submit" class="ml-2 text-gray-500 hover:text-gray-700 focus:outline-none">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->
