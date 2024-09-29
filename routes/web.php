@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\AgreementItemController;
+use App\Http\Controllers\SearchController;
 
 use Illuminate\Support\Facades\Route;
 
