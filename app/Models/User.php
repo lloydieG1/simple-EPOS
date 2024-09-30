@@ -35,7 +35,7 @@ class User extends Authenticatable
     // user may have many agreements
     public function agreements()
     {
-        return $this->hasMany(Agreement::class);
+        return $this->hasMany(Agreement::class, 'created_by');
     }
 
     /**

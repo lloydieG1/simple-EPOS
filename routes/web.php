@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Middleware\IsAdmin;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\AgreementItemController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ReportController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -35,10 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/agreement/{agreement}/item/create', [AgreementItemController::class, 'create'])->name('agreement-item.create');
     Route::post('/agreement/{agreement}/item', [AgreementItemController::class, 'store'])->name('agreement-item.store');
     Route::delete('/agreement/{agreement}/item/{item}', [AgreementItemController::class, 'destroy'])->name('agreement-items.destroy');
+});
 
-    // Report routes
+// route group for admin only
+Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/report', [ReportController::class, 'index'])->name('report.index');
-
 });
 
 require __DIR__.'/auth.php';
