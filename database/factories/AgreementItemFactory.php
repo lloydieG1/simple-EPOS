@@ -22,7 +22,8 @@ class AgreementItemFactory extends Factory
             'name' => fake()->word(),
             'description' => fake()->sentence(),
             'quantity' => fake()->numberBetween(1, 10),
-            'cost_price' => fake()->randomFloat(2, 1, 100),
+            // on average, cost price will be lower than retail price
+            'cost_price' => fake()->randomFloat(2, 1, 80),
             'retail_price' => fake()->randomFloat(2, 10, 100),
         ];
     }

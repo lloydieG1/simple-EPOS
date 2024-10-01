@@ -23,6 +23,8 @@ class AgreementFactory extends Factory
             'customer_surname' => fake()->lastName(),
             'customer_date_of_birth' => fake()->date(),
             'created_by' => 1,
+            // created sometime in past year
+            'created_at' => fake()->dateTimeBetween('-1 year'),
         ];
     }
 }

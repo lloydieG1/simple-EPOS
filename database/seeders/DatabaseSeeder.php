@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             // create admin
             User::factory()->create([
                 'name' => 'Admin User',
-                'email' => 'admin@buyback.org',
+                'email' => 'admin@sepos.org',
                 'password' => Hash::make('Gluten3-Tissue7-Bookmark3'),
                 'role' => 'admin',
             ]);
