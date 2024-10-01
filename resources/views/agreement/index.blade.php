@@ -35,9 +35,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $agreement->customer_date_of_birth }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $agreement->created_at->format('Y-m-d') }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <a href="{{ route('agreement.show', $agreement->id) }}" class="text-indigo-600 hover:text-indigo-900">View</a>
-                                    <a href="{{ route('agreement.edit', $agreement->id) }}" class="ml-4 text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
+                                    <a href="{{ route('agreement.show', $agreement->id) }}" class="text-indigo-600 hover:text-indigo-900">View</a>                                </td>
                             </tr>
                             @endforeach
                         </tbody>

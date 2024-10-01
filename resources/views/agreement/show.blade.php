@@ -6,20 +6,20 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h2 class="text-2xl font-semibold mb-6 text-center">Agreement Details</h2>
-                    
-                    <div class="mb-6">
-                        <h3 class="text-xl font-semibold">Customer Information</h3>
-                        <p><strong>Forename:</strong> {{ $agreement->customer_forename }}</p>
-                        <p><strong>Surname:</strong> {{ $agreement->customer_surname }}</p>
-                        <p><strong>Date of Birth:</strong> {{ $agreement->customer_date_of_birth }}</p>
+                    <div class="flex flex-row space-x-16 leading-relaxed">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold">Customer Information</h3>
+                            <p>Forename: <a class="font-semibold text-blue-700">{{ $agreement->customer_forename }}</a></p>
+                            <p>Surname: <a class="font-semibold text-blue-700">{{ $agreement->customer_surname }}</a></p>
+                            <p>Date of Birth: <a class="font-semibold text-blue-700">{{ $agreement->customer_date_of_birth }}</a></p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold">Agreement Information</h3>
+                            <p>Created By: <a class="font-semibold text-blue-700">{{ $agreement->user->name }}</a></p>
+                            <p>Created At: <a class="font-semibold text-blue-700">{{ $agreement->created_at }}</a></p>
+                        </div>
                     </div>
-
-                    <div class="mb-6">
-                        <h3 class="text-xl font-semibold">Agreement Information</h3>
-                        <p><strong>Created By:</strong> {{ $agreement->user->name }}</p>
-                        <p><strong>Created At:</strong> {{ $agreement->created_at }}</p>
-                    </div>
-
                     <div>
                         <h3 class="text-xl font-semibold">Items Included</h3>
                         <table class="min-w-full divide-y divide-gray-200">
