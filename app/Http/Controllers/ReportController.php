@@ -20,8 +20,11 @@ class ReportController extends Controller
     
         // filter and order the staff
         $staffs = $this->getFilteredAndOrderedStaffs($startDate, $endDate, $orderBy);
+
+        // calculate total agreements for the month, total profit accross all staff
+        $overallMetrics = $this->calculateOverallMetrics($staffs);
     
-        return view('report.index', compact('staffs'));
+        return view('report.index', compact('staffs', 'overallMetrics'));
     }
     
     private function getFilteredAndOrderedStaffs($startDate, $endDate, $orderBy)
@@ -61,12 +64,29 @@ class ReportController extends Controller
         $user->total_cost_price = $user->agreements->sum(function ($agreement) {
             return $agreement->agreementItems->sum('cost_price');
         });
-        $user->average_cost_price = $user->agreements->flatMap(function ($agreement) {
+        $user->average_cost_price = round($user->agreements->flatMap(function ($agreement) {
             return $agreement->agreementItems;
-        })->avg('cost_price');
+        })->avg('cost_price'), 2);
         $user->max_cost_price = $user->agreements->flatMap(function ($agreement) {
             return $agreement->agreementItems;
         })->max('cost_price');
         return $user;
+    }
+
+    // calculate total agreements for the month, total profit accross all staff
+    private function calculateOverallMetrics($staffs)
+    {
+        $totalAgreements = $staffs->sum('agreements_count');
+
+        // calculate gross profit
+        $totalCostPrice = $staffs->sum('total_cost_price');
+        $totalRetailPrice = $staffs->sum(function ($staff) {
+            return $staff->agreements->sum(function ($agreement) {
+                return $agreement->agreementItems->sum('retail_price');
+            });
+        });
+        $grossProfit = $totalRetailPrice - $totalCostPrice;
+
+        return compact('totalAgreements', 'grossProfit');
     }
 }
