@@ -61,7 +61,7 @@ class AgreementController extends Controller
         ]);
 
         
-        // atomic transaction
+        // atomic transaction, for data integrity in high-concurrency environment
         DB::transaction(function () use ($request) {
             $agreement = Agreement::create([
                 'created_by' => Auth::id(),
